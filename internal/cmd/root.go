@@ -38,14 +38,14 @@ const (
 	flagSandbox             = "sandbox"
 	flagProfile             = "profile"
 	flagConfig              = "config-file"
-	envPrefix               = "XIGUBO"
+	envPrefix               = "UMBELUZI"
 	defaultProfile          = "default"
 	defaultConfigFileFormat = "yaml"
 )
 
 func NewCmdRoot(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:          "xibugo",
+		Use:          "umbeluzi",
 		SilenceUsage: true,
 	}
 
@@ -77,7 +77,7 @@ func lookupConfigFiles() {
 
 	if configFile != "" {
 		viper.SetConfigFile(configFile)
-	} else if configFile := os.Getenv("XIGUBO_CONFIG_FILE"); configFile != "" {
+	} else if configFile := os.Getenv("UMBELUZI_CONFIG_FILE"); configFile != "" {
 		viper.SetConfigFile(configFile)
 	} else {
 		configHome := os.Getenv("XDG_CONFIG_HOME")
@@ -87,12 +87,12 @@ func lookupConfigFiles() {
 		}
 
 		viper.AddConfigPath(filepath.Join(configHome, "xibugo"))
-		viper.AddConfigPath("/etc/xibugo")
+		viper.AddConfigPath("/etc/umbeluzi")
 		viper.SetConfigType(defaultConfigFileFormat)
 
 		if profile != "" {
 			viper.SetConfigName(profile)
-		} else if configProfile := os.Getenv("XIGUBO_PROFILE"); configProfile != "" {
+		} else if configProfile := os.Getenv("UMBELUZI_PROFILE"); configProfile != "" {
 			viper.SetConfigName(configProfile)
 		} else {
 			viper.SetConfigName(defaultProfile)
